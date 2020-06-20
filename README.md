@@ -1,4 +1,4 @@
-# Co-Make API
+<div align="center"># Co-Make API
 
 ---
 *Published URL = https://community-issues.herokuapp.com/*
@@ -55,4 +55,4 @@ __Base URL = https://community-issues.herokuapp.com/api__
 |      /issue/:id    | PUT   |        Edits an Issue             |
 |      /issue/:id    |DELETE |        Deletes an Issue           |
 
-
+</div>
