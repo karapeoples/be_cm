@@ -1,7 +1,7 @@
 # Co-Make API
 
 ---
-*Published URL = https://troll-hub.herokuapp.com/*
+*Published URL = https://community-issues.herokuapp.com/*
 
 --- 
 Schemas 
@@ -25,7 +25,7 @@ Issues Schema:{
 
 }
 
-__Base URL = https://troll-hub.herokuapp.com/api__
+__Base URL = https://community-issues.herokuapp.com/api__
 
 1. Creation/Login Flow ~~ RestAPI ~~ See Charts for Endpoints
 
