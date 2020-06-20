@@ -1,4 +1,5 @@
-<div align="center"># Co-Make API
+<div align="center">
+#Co-Make API
 
 ---
 *Published URL = https://community-issues.herokuapp.com/*
