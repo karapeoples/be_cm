@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 const { jwtSecret } = require('./config/secret')
-const regUser = require('./auth_model')
+const Users = require('./auth_model')
 
 const generateToken = (user) => {
 	const payload = {
