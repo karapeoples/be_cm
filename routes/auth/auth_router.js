@@ -31,7 +31,7 @@ const generateToken = (user) => {
 
   try {
     // add new user to the db
-    let newUser = await Users.addUser(userObj);
+    let newUser = await Users.add(userObj);
     let newUserId = newUser.id;
 
     const token = generateToken(newUser);
