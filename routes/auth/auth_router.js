@@ -21,10 +21,10 @@ router.post('/register', (req, res) => {
 	const newUser = req.body
 	
 	const rounds = process.env.BCRYPT_ROUNDS || 8
-	const hash = bcryptjs.hashSync(password, rounds)
+	const hash = bcryptjs.hashSync(newUser.password, rounds)
 	hash(newUser.password)
 	
-		const token = generateToken(user)
+		const token = generateToken(newUser)
 
 	if (newUser) {
 		regUser
