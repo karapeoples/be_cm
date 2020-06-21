@@ -47,10 +47,10 @@ __Base URL = https://community-issues.herokuapp.com/api__
 
 |      Endpoints       | Method|            Other                |
 | :------------------: | :----:| :-----------------------------: |
-|      /issue        | GET   |     Gets a List of Issues        |
-|      /issue/:id    | GET   |      Gets an Issue By Id          |
-|      /issue        | POST   |     Posts an Issue       |
-|      /issue/:id    | PUT   |        Edits an Issue             |
-|      /issue/:id    |DELETE |        Deletes an Issue           |
+|      /issues        | GET   |     Gets a List of Issues        |
+|      /issues/:id    | GET   |      Gets an Issue By Id          |
+|      /issues        | POST   |     Posts an Issue       |
+|      /issues/:id    | PUT   |        Edits an Issue             |
+|      /issues/:id    |DELETE |        Deletes an Issue           |
 
 </div>
