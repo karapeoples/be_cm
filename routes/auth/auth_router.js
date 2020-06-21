@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
 	
 	const rounds = process.env.BCRYPT_ROUNDS || 8
 	const hash = bcryptjs.hashSync(password, rounds)
-	
+	hash(newUser.password)
 	
 		const token = generateToken(user)
 
