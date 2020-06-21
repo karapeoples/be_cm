@@ -34,7 +34,7 @@ const generateToken = (user) => {
     let newUser = await Users.addUser(userObj);
     let newUserId = newUser.id;
 
-    const token = genToken(newUser);
+    const token = generateToken(newUser);
     res
       .status(201)
       .json({ user: newUser, user_id: newUserId, token: token });
@@ -57,7 +57,7 @@ router.post('/login', async (req, res, next) => {
 
 			if (user && bcrypt.compareSync(password, user.password)) {
 				const roleInfo = await Users.findTypeById(user.id)
-				const token = genToken(user)
+				const token = generateToken(user)
 				res.status(200).json({ user: user, user_id: roleInfo, token: token })
 			} else {
 				res.status(401).json({ message: 'Invalid Login Credentials' })
