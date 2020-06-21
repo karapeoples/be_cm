@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
 		regUser
 			.add(userObject)
 			.then((user) => {
-				res.status(201).json({ newUser: userObject, token: token })
+				res.status(201).json({ user: userObject, token: token })
 			})
 			.catch((error) => {
 				res.status(418).json({ error: 'I am a Teapot!' })
@@ -58,7 +58,7 @@ router.post('/login', (req, res) => {
 				// compare the password the hash stored in the database
 				if (user && bcryptjs.compareSync(password, user.password)) {
 					const token = generateToken(user)
-					res.status(200).json({ message: 'Welcome to our API', token })
+					res.status(200).json({ user:user, token })
 				} else {
 					res.status(401).json({ message: 'Invalid credentials' })
 				}
