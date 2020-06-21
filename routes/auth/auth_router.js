@@ -28,13 +28,14 @@ router.post('/register', (req, res) => {
 		email: email,
 		password: hash,
 	}
-	const token = generateToken(userObject)
+	let user_id = req.body.id
+		const token = generateToken(userObject)
 
 	if (userObject) {
 		regUser
 			.add(userObject)
 			.then((user) => {
-				res.status(201).json({ user: userObject, token: token })
+				res.status(201).json({ user: userObject, user_id: user_id, token: token })
 			})
 			.catch((error) => {
 				res.status(418).json({ error: 'I am a Teapot!' })
@@ -48,6 +49,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
 	const {  email, password } = req.body
+	let user_id = req.body.id
 	if (req.body) {
 		regUser
 			.findBy({ email: email })
@@ -55,7 +57,7 @@ router.post('/login', (req, res) => {
 				// compare the password the hash stored in the database
 				if (user && bcryptjs.compareSync(password, user.password)) {
 					const token = generateToken(user)
-					res.status(200).json({  user:user, token:token })
+					res.status(200).json({  user:user, user_id:user_id, token:token })
 				} else {
 					res.status(401).json({ message: 'Invalid credentials' })
 				}
