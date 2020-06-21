@@ -10,7 +10,7 @@ const issueRouter = require('../routes/issues/issue_router')
 
 server.use(helmet(), morgan('dev'), express.json(), cors())
 server.use('/api/auth', authRouter)
-server.use('/api/user', auth, userRouter)
+server.use('/api/user',  userRouter)
 server.use('/api/issues', auth, issueRouter)
 
 server.get('/', (req, res) => {
