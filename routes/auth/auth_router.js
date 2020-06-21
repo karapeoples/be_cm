@@ -19,9 +19,11 @@ const generateToken = (user) => {
 
 router.post('/register', (req, res) => {
 	const { email, password, state, zip, name } = req.body
+	const {id}= req.params
 	const rounds = process.env.BCRYPT_ROUNDS || 8
 	const hash = bcryptjs.hashSync(password, rounds)
 	const userObject = {
+		id: id,
 		name: name,
 		zip: zip,
 		state:state,
@@ -47,9 +49,9 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-	const { email, password } = req.body
-
-	if (req.body) {
+	const {  email, password } = req.body
+	const {id}= req.params
+	if (id,req.body) {
 		regUser
 			.findBy({ email: email })
 			.then(([user]) => {
