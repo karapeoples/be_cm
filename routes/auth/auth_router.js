@@ -20,15 +20,18 @@ const generateToken = (user) => {
 
 	
 	router.post('/register', (req, res) => {
-  const { email, password, country, firstName, lastName } = req.body
+		const {  email, password, state, name, zip } = req.body
+	
   const rounds = process.env.BCRYPT_ROUNDS || 8
   const hash = bcryptjs.hashSync(password, rounds)
-  const userObject = {
-    firstName: firstName,
-		lastName: lastName,
-		country: country,
+		const userObject = {
+		
+    name:name,
+		state: state,
 		email: email,
-    password: hash,
+		password: hash,
+		zip: zip,
+
   }
   const token = generateToken(userObject)
   
@@ -36,7 +39,7 @@ const generateToken = (user) => {
 			regUser
 				.add(userObject)
 				.then((user) => {
-					res.status(201).json({ newUser: userObject, user_id:userObject.id, token: token  })
+					res.status(201).json({ newUser: userObject, user_id:user.id,token: token  })
 				})
 				.catch((error) => {
 					res.status(500).json({ error: 'You were unable to get info from the database!' })
