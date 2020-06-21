@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 const { jwtSecret } = require('./config/secret')
-const Users = require('./auth_model')
+const regUser = require('./auth_model')
 
 const generateToken = (user) => {
 	const payload = {
@@ -18,54 +18,58 @@ const generateToken = (user) => {
 }
 
 
-	router.post("/register", async (req, res) => {
-		let { email, password, state, zip, name } = req.body;
-		const rounds = process.env.BCRYPT_ROUNDS || 8
-  const hash = bcrypt.hashSync(password, rounds);
-  let userObj = {
-    email: email,
+	
+	router.post('/register', (req, res) => {
+  const { email, password, country, firstName, lastName } = req.body
+  const rounds = process.env.BCRYPT_ROUNDS || 8
+  const hash = bcryptjs.hashSync(password, rounds)
+  const userObject = {
+    firstName: firstName,
+		lastName: lastName,
+		country: country,
+		email: email,
     password: hash,
-		name: name,
-		state: state,
-		zip: zip,
-  };
-
-  try {
-    // add new user to the db
-    let newUser = await Users.add(userObj);
-    let newUserId = newUser.id;
-
-    const token = generateToken(newUser);
-    res
-      .status(201)
-      .json({ user: newUser, user_id: newUserId, token: token });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ errorMsg: error, message: "Was not able to register user" });
   }
-});
-
-router.post('/login', async (req, res, next) => {
-	if (!req.body || !req.body.password || !req.body.email) {
-		next('A valid email and password are required.')
-	} else {
-		let { email, password } = req.body
-
-		try {
-			// find user by email
-			const user = await Users.findBy({ email })
-
-			if (user && bcrypt.compareSync(password, user.password)) {
-				const roleInfo = await Users.findTypeById(user.id)
-				const token = generateToken(user)
-				res.status(200).json({ user: user, user_id: roleInfo, token: token })
-			} else {
-				res.status(401).json({ message: 'Invalid Login Credentials' })
-			}
-		} catch (error) {
-			res.status(500).json({ errorMsg: error, message: 'Was not able to login user' })
+  const token = generateToken(userObject)
+  
+  if (userObject) {
+			regUser
+				.add(userObject)
+				.then((user) => {
+					res.status(201).json({ newUser: userObject, user_id:userObject.id, token: token  })
+				})
+				.catch((error) => {
+					res.status(500).json({ error: 'You were unable to get info from the database!' })
+				})
+		} else {
+			res.status(400).json({
+				message: 'please provide all required information',
+			})
 		}
+})
+
+router.post('/login', (req, res) => {
+	const { email, password } = req.body
+
+	if (req.body) {
+		regUser
+			.findBy({ email: email })
+			.then(([user]) => {
+				// compare the password the hash stored in the database
+				if (user && bcryptjs.compareSync(password, user.password)) {
+					const token = generateToken(user)
+					res.status(200).json({ user:user, user_id:user.id, token:token })
+				} else {
+					res.status(401).json({ message: 'Invalid credentials' })
+				}
+			})
+			.catch((error) => {
+				res.status(500).json({ error: 'You were unable to get info from the database!' })
+			})
+	} else {
+		res.status(400).json({
+			message: 'please provide email and password',
+		})
 	}
 })
 
