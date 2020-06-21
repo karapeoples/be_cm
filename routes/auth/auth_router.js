@@ -19,14 +19,14 @@ const generateToken = (user) => {
 
 
 	router.post("/register", async (req, res) => {
-  let { email, password, firstName, lastName, role } = req.body;
+  let { email, password, state, zip, name } = req.body;
   const hash = bcrypt.hashSync(password, 8);
   let userObj = {
     email: email,
     password: hash,
-    first_name: firstName,
-    last_name: lastName,
-    role: role
+		name: name,
+		state: state,
+		zip: zip,
   };
 
   try {
