@@ -1,7 +1,9 @@
 # Co-Make API
+<div align="center">
+
 
 ---
-*Published URL = https://troll-hub.herokuapp.com/*
+*Published URL = https://community-issues.herokuapp.com/*
 
 --- 
 Schemas 
@@ -11,9 +13,7 @@ User Schema:
   email: string,
   zip: integer,
   state: string,
-  password: string,
-
-}
+  password: string,}
 
 Issues Schema:{
  name: string,
@@ -21,11 +21,9 @@ Issues Schema:{
  state: string,
  zip: integer,
  image: string,
- vote: integer,
+ vote: integer,}
 
-}
-
-__Base URL = https://troll-hub.herokuapp.com/api__
+__Base URL = https://community-issues.herokuapp.com/api__
 
 1. Creation/Login Flow ~~ RestAPI ~~ See Charts for Endpoints
 
@@ -55,4 +53,4 @@ __Base URL = https://troll-hub.herokuapp.com/api__
 |      /issue/:id    | PUT   |        Edits an Issue             |
 |      /issue/:id    |DELETE |        Deletes an Issue           |
 
-
+</div>
