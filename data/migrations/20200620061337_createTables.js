@@ -1,6 +1,6 @@
 exports.up = function (knex) {
 	return knex.schema.createTable('user', (tbl) => {
-		tbl.increments()
+		tbl.increments('id')
 		tbl.string('name', 255).notNullable()
 		tbl.integer('zip').notNullable()
 		tbl.string('state', 255).notNullable()
@@ -8,7 +8,7 @@ exports.up = function (knex) {
 		tbl.string('password', 255).notNullable()
   })
     .createTable('issues', (tbl) => {
-      tbl.increments()
+      tbl.increments('id')
       tbl.string('name', 255).notNullable()
       tbl.string('desc', 255).notNullable()
 			tbl.integer('zip').notNullable()
