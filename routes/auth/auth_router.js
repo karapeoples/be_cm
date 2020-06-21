@@ -18,7 +18,8 @@ const generateToken = (user) => {
 }
 
 router.post('/register', (req, res) => {
-	const { id, email, password, state, zip, name } = req.body
+	const { email, password, state, zip, name } = req.body
+	const{id}=req.params
 	const rounds = process.env.BCRYPT_ROUNDS || 8
 	const hash = bcryptjs.hashSync(password, rounds)
 	const userObject = {
@@ -29,7 +30,7 @@ router.post('/register', (req, res) => {
 		email: email,
 		password: hash,
 	}
-	let user_id = req.body.id
+	
 		const token = generateToken(userObject)
 
 	if (userObject) {
@@ -49,7 +50,8 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-	const { id, email, password } = req.body
+	const { email, password } = req.body
+	const{id}=req.params
 	const loginObj = {
 		user_id: id,
 	}
