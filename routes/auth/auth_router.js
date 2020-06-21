@@ -18,10 +18,11 @@ const generateToken = (user) => {
 }
 
 router.post('/register', (req, res) => {
-	const { email, password, state, zip, name } = req.body
+	const { id, email, password, state, zip, name } = req.body
 	const rounds = process.env.BCRYPT_ROUNDS || 8
 	const hash = bcryptjs.hashSync(password, rounds)
 	const userObject = {
+		user_id:id,
 		name: name,
 		zip: zip,
 		state:state,
@@ -35,7 +36,7 @@ router.post('/register', (req, res) => {
 		regUser
 			.add(userObject)
 			.then((user) => {
-				res.status(201).json({ user: userObject, user_id: user_id, token: token })
+				res.status(201).json({ user: userObject, token: token })
 			})
 			.catch((error) => {
 				res.status(418).json({ error: 'I am a Teapot!' })
@@ -48,8 +49,10 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-	const {  email, password } = req.body
-	let user_id = req.body.id
+	const { id, email, password } = req.body
+	const loginObj = {
+		user_id: id,
+	}
 	if (req.body) {
 		regUser
 			.findBy({ email: email })
@@ -57,7 +60,7 @@ router.post('/login', (req, res) => {
 				// compare the password the hash stored in the database
 				if (user && bcryptjs.compareSync(password, user.password)) {
 					const token = generateToken(user)
-					res.status(200).json({  user:user, user_id:user_id, token:token })
+					res.status(200).json({  user:loginObj, token:token })
 				} else {
 					res.status(401).json({ message: 'Invalid credentials' })
 				}
