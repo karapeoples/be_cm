@@ -62,7 +62,7 @@ router.delete('/:id', validIssueId, (req, res) => {
 		.then((issue) => {
 			issue
 				? Issues.erase(id).then((deleted) => {
-						deleted ? res.status(200).json({ success: `Issue ${id} was deleted!`, info: issue }) : null
+						deleted ? res.status(200).json({ success: `Issue ${id} was deleted!`, issue }) : null
 				  })
 				: null
 		})

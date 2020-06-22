@@ -31,7 +31,6 @@ const generateToken = (user) => {
 		email: email,
 		password: hash,
 		zip: zip,
-
   }
   const token = generateToken(userObject)
   
