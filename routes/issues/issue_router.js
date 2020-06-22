@@ -56,7 +56,7 @@ router.put('/:id', validIssueId, (req, res) => {
 		})
 })
 
-router.delete('/:id', validIssueId, (req, res) => {
+router.delete('/:id', (req, res) => {
 	const { id } = req.params
 	Issues.getById(id)
 		.then((issue) => {
