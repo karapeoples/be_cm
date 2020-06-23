@@ -7,21 +7,25 @@
 
 --- 
 Schemas 
-User Schema: 
-{ 
-  name: string,
-  email: string,
-  zip: integer,
-  state: string,
-  password: string,}
 
-Issues Schema:{
- name: string,
- desc: string,
- state: string,
- zip: integer,
- image: string,
- vote: integer,}
+    User Schema: 
+    { 
+    name: string,
+    email: string,
+    zip: integer,
+    state: string,
+    password: string,
+    }
+
+    Issues Schema:
+    {
+    name: string,
+    desc: string,
+    state: string,
+    zip: integer,
+    image: string,
+    vote: integer,
+    }
 
 __Base URL = https://community-issues.herokuapp.com/api__
 
