@@ -14,7 +14,7 @@ exports.up = function (knex) {
 			tbl.integer('zip').notNullable()
 			tbl.string('state', 255).notNullable()
 		  tbl.string('image', 255).notNullable()
-			tbl.string('vote', 255)
+			tbl.integer('vote')
   })
 }
 

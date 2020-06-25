@@ -55,6 +55,20 @@ router.put('/:id', validIssueId, (req, res) => {
 			res.status(418).json({ error: 'I am a Teapot' })
 		})
 })
+router.put('/:id/vote', validIssueId, (req, res) => {
+	const { id } = req.params
+	const { vote } = req.body
+	const issueObject = {
+		vote: vote,
+	}
+	Issues.update(id, issueObject)
+		.then((issue) => {
+			res.status(200).json({ success: 'Info Updated!', info: issueObject })
+		})
+		.catch((err) => {
+			res.status(418).json({ error: 'I am a Teapot' })
+		})
+})
 
 router.delete('/:id', (req, res) => {
 	const { id } = req.params
