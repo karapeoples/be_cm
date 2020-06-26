@@ -29,7 +29,7 @@ exports.seed = function (knex) {
 					id: 3,
 					name: 'Desecrated Graveyard',
 					desc: 'After the Riots',
-					state: 'Chicago',
+					state: 'Illinois',
 					zip: 69695,
 					image:
 						'https://cdn.cnn.com/cnnnext/dam/assets/170226215055-philadelphia-cemetery-vandalism-vstop-ewoh-orig-00000000-exlarge-169.jpg',
@@ -49,7 +49,7 @@ exports.seed = function (knex) {
 					id: 5,
 					name: 'Tree Blocking Road',
 					desc: 'Tree fell near my property in the road',
-					state: 'Chicago',
+					state: 'Illinois',
 					image:
 						'https://www.thoughtco.com/thmb/0eQ-A1fxDyf9t_295wpN7Ha_Zfw=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-157481087-4646556b72624a6b9829ebec27861a0c.jpg',
 					zip: '325964',
@@ -59,7 +59,7 @@ exports.seed = function (knex) {
 					id: 6,
 					name: 'Graffiti',
 					desc: 'Real Eye-Sore',
-					state: 'Chicago',
+					state: 'Illinois',
 					image: 'https://images.pexels.com/photos/4547590/pexels-photo-4547590.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
 					zip: '91254',
 					vote: 0,
