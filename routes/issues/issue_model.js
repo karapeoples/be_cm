@@ -9,7 +9,7 @@ const getById = (id) => {
 }
 const add =(issue) =>{
 	return db('issues')
-		.insert(issue)
+		.insert(issue, 'id')
 		.then((ids) => {
 			return getById(ids[0])
 		})
